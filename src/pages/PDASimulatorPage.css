@@ -1,0 +1,160 @@
+/* PDA Simulator specific styles */
+
+.pda-verdict {
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 4px solid;
+}
+
+.pda-verdict--accept {
+  background: #e8f5e8;
+  border-color: #2d8a2d;
+  color: #1a5a1a;
+}
+
+.pda-verdict--reject {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+/* Step card */
+.pda-step-card {
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-rule);
+}
+
+.pda-step-header {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+}
+
+.pda-step-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.pda-step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.pda-kv {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+}
+
+.pda-kv span {
+  color: var(--color-olive-deep);
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.pda-mono {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-espresso);
+}
+
+/* Stack visualization */
+.pda-stack-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pda-stack-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-olive);
+}
+
+.pda-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 60px;
+}
+
+.pda-stack-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 36px;
+  border: 2px solid var(--color-olive);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  background: #fff;
+  transition: background 0.2s;
+}
+
+.pda-stack-cell--top {
+  background: var(--color-olive-deep);
+  color: var(--color-paper);
+  border-color: var(--color-olive-deep);
+}
+
+.pda-stack-cell--empty {
+  font-size: 11px;
+  color: var(--color-olive);
+  border-style: dashed;
+  width: auto;
+  padding: 0 10px;
+}
+
+/* Execution log table */
+.pda-log-table-wrap {
+  overflow-x: auto;
+}
+
+.pda-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pda-log-table th,
+.pda-log-table td {
+  padding: 7px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.pda-log-table th {
+  background: var(--color-surface);
+  font-weight: 700;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-olive-deep);
+}
+
+.pda-log-row--active td {
+  background: rgba(85, 107, 47, 0.08);
+}
+
+.pda-log-table tr:hover td {
+  background: var(--color-surface);
+}

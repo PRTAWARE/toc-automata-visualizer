@@ -275,6 +275,38 @@ export const PRESET_AUTOMATA: Record<string, AutomatonPreset> = {
   },
 
   // --- NFA / ε-NFA Conversion Presets ---
+  'nfa-contains-01': {
+    category: 'conversion',
+    automaton: {
+      id: 'nfa-contains-01',
+      title: 'NFA: Contains Substring "01"',
+      description: 'Accepts all strings over {0, 1} containing the substring "01". Loops in q0 on 0 and 1, non-deterministically branches to q1 on 0, then to accepting state q2 on 1.',
+      type: 'NFA',
+      alphabet: ['0', '1'],
+      states: [
+        { id: 'q0', label: 'q0', isStart: true, isFinal: false, x: 180, y: 220 },
+        { id: 'q1', label: 'q1', isStart: false, isFinal: false, x: 380, y: 220 },
+        { id: 'q2', label: 'q2', isStart: false, isFinal: true, x: 580, y: 220 }
+      ],
+      transitions: [
+        { id: 't_c01_1', from: 'q0', to: 'q0', symbol: '0' },
+        { id: 't_c01_2', from: 'q0', to: 'q0', symbol: '1' },
+        { id: 't_c01_3', from: 'q0', to: 'q1', symbol: '0' },
+        { id: 't_c01_4', from: 'q1', to: 'q2', symbol: '1' },
+        { id: 't_c01_5', from: 'q2', to: 'q2', symbol: '0' },
+        { id: 't_c01_6', from: 'q2', to: 'q2', symbol: '1' }
+      ]
+    },
+    sampleTestCases: [
+      { id: 'c1', input: '001', expected: true, explanation: 'Branch at second 0 reaches q2 on 1' },
+      { id: 'c2', input: '11010', expected: true, explanation: 'Contains substring 01' },
+      { id: 'c3', input: '01', expected: true, explanation: 'Exact match' },
+      { id: 'c4', input: '000', expected: false, explanation: 'Never sees 1 after 0' },
+      { id: 'c5', input: '111', expected: false, explanation: 'Stays trapped in q0' },
+      { id: 'c6', input: '', expected: false, explanation: 'Empty string does not contain 01' }
+    ]
+  },
+
   'nfa-ends-in-01': {
     category: 'conversion',
     automaton: {

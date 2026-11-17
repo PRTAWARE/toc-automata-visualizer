@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AutomataProvider, useAutomata } from './context/AutomataContext';
 import { Navbar } from './components/Navbar/Navbar';
 import { AutomataCanvas } from './components/Canvas/AutomataCanvas';
@@ -9,6 +10,9 @@ import { TransitionTable } from './components/Panels/TransitionTable';
 import { TraceTable } from './components/Panels/TraceTable';
 import { ValidationAlerts } from './components/Panels/ValidationAlerts';
 import { BatchTester } from './components/Panels/BatchTester';
+import RegexPage from './pages/RegexPage.jsx';
+import PDASimulatorPage from './pages/PDASimulatorPage.jsx';
+import TuringMachinePage from './pages/TuringMachinePage.jsx';
 import { Table, Layers, AlertCircle, Keyboard } from 'lucide-react';
 
 const MainDashboard: React.FC = () => {
@@ -189,7 +193,16 @@ const MainDashboard: React.FC = () => {
 export default function App() {
   return (
     <AutomataProvider>
-      <MainDashboard />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainDashboard />} />
+          <Route path="/fa-simulator" element={<MainDashboard />} />
+          <Route path="/regex" element={<RegexPage />} />
+          <Route path="/pda" element={<PDASimulatorPage />} />
+          <Route path="/turing-machine" element={<TuringMachinePage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
     </AutomataProvider>
   );
 }

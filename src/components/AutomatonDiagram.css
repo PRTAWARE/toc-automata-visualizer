@@ -1,0 +1,61 @@
+.automaton-diagram {
+  border: 1px solid var(--color-rule);
+  background: var(--color-surface);
+  overflow: auto;
+  max-height: 520px;
+}
+
+.automaton-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 480px;
+}
+
+.automaton-diagram__node {
+  fill: var(--color-paper);
+  stroke: var(--color-olive);
+  stroke-width: 1.5;
+}
+
+.automaton-diagram__node--start {
+  stroke: var(--color-terracotta);
+  stroke-width: 2;
+}
+
+.automaton-diagram__node-inner {
+  fill: none;
+  stroke: var(--color-olive);
+  stroke-width: 1.2;
+}
+
+.automaton-diagram__node-label {
+  fill: var(--color-espresso);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.automaton-diagram__edge {
+  fill: none;
+  stroke: var(--color-terracotta);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.automaton-diagram__start-stub {
+  stroke-dasharray: none;
+}
+
+.automaton-diagram__label-bg {
+  fill: var(--color-surface);
+  opacity: 0.85;
+}
+
+.automaton-diagram__label {
+  fill: var(--color-espresso);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-anchor: middle;
+}

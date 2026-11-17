@@ -1,0 +1,420 @@
+/* FA Simulator Page — styles shared by DFA/NFA & NFAToDFA pages */
+
+/* ── Example pills strip ── */
+.fa-examples {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--color-olive-deep);
+  font-weight: 600;
+}
+
+/* ── Two-column layout: sidebar + main ── */
+.fa-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── Builder Sidebar ── */
+.fa-builder {
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 10px;
+  padding: 22px 20px;
+  position: sticky;
+  top: 74px;
+}
+
+.fa-builder__title {
+  font-size: 16px;
+  color: var(--color-olive-deep);
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+/* Field wrapper */
+.fa-field {
+  margin-bottom: 16px;
+}
+
+.fa-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Text/select/number inputs */
+.fa-input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1.5px solid var(--color-rule);
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-family: var(--font-display);
+  background: var(--color-paper);
+  color: var(--color-espresso);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.fa-input:focus {
+  border-color: var(--color-olive);
+}
+
+.fa-input--mono {
+  font-family: var(--font-mono);
+}
+
+.fa-textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1.5px solid var(--color-rule);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  background: var(--color-paper);
+  color: var(--color-espresso);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.65;
+}
+
+.fa-textarea:focus {
+  border-color: var(--color-olive);
+}
+
+.fa-hint {
+  font-size: 11.5px;
+  color: var(--color-olive);
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+.fa-hint code {
+  font-family: var(--font-mono);
+  background: var(--color-surface);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.fa-radio-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.fa-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.fa-check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fa-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13.5px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa-build-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.fa-error {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border-radius: 6px;
+  font-size: 13px;
+  border-left: 3px solid var(--color-danger);
+}
+
+/* ── Output Sections ── */
+.fa-output {
+  min-width: 0; /* prevent grid blowout */
+}
+
+.fa-section {
+  margin-bottom: 24px;
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+
+.fa-section > h2 {
+  font-size: 16px;
+  color: var(--color-olive-deep);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── Verdict badge next to heading ── */
+.fa-verdict {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+}
+
+.fa-verdict--accept {
+  background: #d4f0d4;
+  color: #1a6b1a;
+}
+
+.fa-verdict--reject {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+/* ── Simulation controls row ── */
+.sim-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.sim-step-label {
+  font-size: 13px;
+  color: var(--color-espresso);
+  font-family: var(--font-mono);
+  padding: 0 6px;
+}
+
+/* ── Input character display ── */
+.sim-input-display {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sim-char {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-rule);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-espresso);
+  background: var(--color-paper);
+  transition: background 0.18s, border-color 0.18s, transform 0.18s;
+}
+
+.sim-char--done {
+  background: var(--color-surface);
+  color: var(--color-olive);
+  border-color: var(--color-olive);
+  opacity: 0.6;
+}
+
+.sim-char--active {
+  background: var(--color-terracotta);
+  color: #fff;
+  border-color: var(--color-terracotta-deep);
+  transform: scale(1.12);
+}
+
+.sim-char--empty {
+  width: auto;
+  padding: 0 12px;
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--color-olive);
+}
+
+/* ── Current step card ── */
+.sim-step-card {
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  border-left: 3px solid var(--color-olive);
+}
+
+.sim-step-desc {
+  font-size: 14px;
+  color: var(--color-espresso);
+  margin-bottom: 6px;
+}
+
+.sim-active-states {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--color-olive-deep);
+  font-weight: 600;
+}
+
+/* ── Step log list ── */
+.sim-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sim-log__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.1s;
+  font-size: 13px;
+}
+
+.sim-log__item:hover {
+  background: var(--color-surface);
+}
+
+.sim-log__item--active {
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-olive);
+}
+
+.sim-log__item--accept {
+  border-left: 3px solid #2d8a2d;
+}
+
+.sim-log__item--reject {
+  border-left: 3px solid var(--color-danger);
+}
+
+.sim-log__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  background: var(--color-olive);
+  color: var(--color-paper);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+.sim-log__text {
+  color: var(--color-espresso);
+  line-height: 1.45;
+}
+
+/* ── Step log used by NFA→DFA and DFA Minimize pages ── */
+.step-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-log__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-size: 13px;
+}
+
+.step-log__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  background: var(--color-olive-deep);
+  color: var(--color-paper);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+.step-log__text {
+  color: var(--color-espresso);
+  line-height: 1.5;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+/* ── Empty state placeholder ── */
+.fa-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  color: var(--color-olive-deep);
+  background: #fff;
+  border: 1px dashed var(--color-rule);
+  border-radius: 10px;
+  min-height: 300px;
+}
+
+.fa-empty__icon {
+  font-size: 52px;
+  margin-bottom: 18px;
+  opacity: 0.35;
+}
+
+.fa-empty p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .fa-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .fa-builder {
+    position: static;
+  }
+}

@@ -1,0 +1,23 @@
+/* DFA Minimize page specific */
+.min-info-box {
+  padding: 12px 16px;
+  border-radius: 7px;
+  margin-bottom: 16px;
+  font-size: 13.5px;
+  border-left: 4px solid;
+}
+.min-info-box--warn {
+  background: #fff4e0;
+  border-color: #c87a17;
+  color: #7a4a0a;
+}
+.min-info-box--info {
+  background: var(--color-surface);
+  border-color: var(--color-olive);
+  color: var(--color-olive-deep);
+}
+.min-info-box--ok {
+  background: #e8f5e8;
+  border-color: #2d8a2d;
+  color: #1a5a1a;
+}

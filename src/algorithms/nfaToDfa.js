@@ -1,0 +1,131 @@
+// ============================================================
+// NFA → DFA — Subset Construction Algorithm
+// Pure JavaScript. Each DFA state = a SET of NFA states.
+// ============================================================
+
+import { epsilonClosure, nfaMove } from './faSimulate.js';
+
+/**
+ * Convert an NFA to a DFA using the Subset Construction algorithm.
+ *
+ * @param {number[]} nfaStates   - list of NFA state ids e.g. [0,1,2,3]
+ * @param {Array<{from,to,symbol}>} transitions - NFA transitions
+ * @param {number} start         - NFA start state id
+ * @param {number[]} accept      - NFA accepting state ids
+ * @param {string[]} alphabet    - input alphabet (no ε)
+ * @returns {{ states, stateLabels, transitions, start, accept, steps, epsilonClosures }}
+ */
+export function convertNFAtoDFA(nfaStates, transitions, start, accept, alphabet) {
+  const nfaAcceptSet = new Set(accept);
+  const steps = [];        // educational step-by-step log
+  const epsilonClosures = []; // for display
+
+  // Helper: canonical key for a set of NFA states
+  const setKey = (s) => JSON.stringify([...s].sort((a, b) => a - b));
+  const setLabel = (s) => (s.length === 0 ? '∅' : '{' + [...s].sort((a,b)=>a-b).map((q) => 'q' + q).join(', ') + '}');
+
+  // DFA state registry
+  // dfaStates[i] = sorted array of NFA state ids
+  const dfaStates = [];
+  const idOf = new Map(); // setKey → DFA state id
+
+  const dfaTransitions = [];
+  const dfaAccept = [];
+
+  // Step 1: ε-closure of NFA start state = DFA start state
+  const startClosure = epsilonClosure([start], transitions);
+  const startKey = setKey(startClosure);
+
+  idOf.set(startKey, 0);
+  dfaStates.push(startClosure);
+
+  steps.push(
+    `Step 1: Compute ε-closure of NFA start state q${start}.` +
+    `\n  ε-closure({q${start}}) = ${setLabel(startClosure)}` +
+    `\n  This becomes DFA state D0.`
+  );
+  epsilonClosures.push({ nfaState: `q${start}`, closure: setLabel(startClosure) });
+
+  // BFS queue of DFA states to process
+  const queue = [startClosure];
+  let stepNum = 2;
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    const currentId = idOf.get(setKey(current));
+
+    steps.push(
+      `\nProcessing DFA state D${currentId} = ${setLabel(current)}:`
+    );
+
+    // Check if this DFA state is accepting
+    // (if ANY NFA state in the set is accepting)
+    const isAccepting = current.some((q) => nfaAcceptSet.has(q));
+    if (isAccepting) {
+      dfaAccept.push(currentId);
+      steps.push(`  → D${currentId} is an ACCEPTING state (contains NFA accepting state(s)).`);
+    }
+
+    // For each alphabet symbol, compute the next DFA state
+    for (const sym of alphabet) {
+      // move: all NFA states reachable on symbol sym
+      const moved = nfaMove(current, sym, transitions);
+
+      if (moved.length === 0) {
+        steps.push(`  On '${sym}': move(D${currentId}, '${sym}') = ∅ — no transition.`);
+        continue;
+      }
+
+      // ε-closure of moved set
+      const closure = epsilonClosure(moved, transitions);
+      const closureKey = setKey(closure);
+
+      let targetId;
+      let isNew = false;
+
+      if (!idOf.has(closureKey)) {
+        // New DFA state discovered
+        targetId = dfaStates.length;
+        idOf.set(closureKey, targetId);
+        dfaStates.push(closure);
+        queue.push(closure);
+        isNew = true;
+      } else {
+        targetId = idOf.get(closureKey);
+      }
+
+      dfaTransitions.push({ from: currentId, to: targetId, symbol: sym });
+
+      steps.push(
+        `  On '${sym}': move = ${setLabel(moved)} → ε-closure = ${setLabel(closure)}` +
+        ` = D${targetId}${isNew ? ' [NEW state]' : ' [already known]'}.` +
+        `\n  Add transition: D${currentId} --'${sym}'--> D${targetId}.`
+      );
+
+      stepNum++;
+    }
+  }
+
+  // Build stateLabels for display
+  const stateLabels = {};
+  dfaStates.forEach((nfaSet, i) => {
+    stateLabels[i] = setLabel(nfaSet);
+  });
+
+  steps.push(
+    `\nSubset Construction complete.` +
+    `\nDFA has ${dfaStates.length} state(s).` +
+    `\nAccepting states: ${dfaAccept.length > 0 ? dfaAccept.map((d) => 'D' + d).join(', ') : 'none'}.`
+  );
+
+  return {
+    states: dfaStates.map((_, i) => i),
+    stateLabels,            // { 0: "{q0, q1}", 1: "{q2}", ... }
+    nfaStateSets: dfaStates, // raw NFA state sets for each DFA state
+    transitions: dfaTransitions,
+    start: 0,
+    accept: dfaAccept,
+    steps,
+    epsilonClosures,
+  };
+}

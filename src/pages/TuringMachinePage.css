@@ -1,0 +1,106 @@
+/* Turing Machine page specific styles */
+
+.tm-verdict {
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 4px solid;
+}
+
+.tm-verdict--accept {
+  background: #e8f5e8;
+  border-color: #2d8a2d;
+  color: #1a5a1a;
+}
+
+.tm-verdict--reject {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.tm-verdict--limit {
+  background: #fff4e0;
+  border-color: #c87a17;
+  color: #7a4a0a;
+}
+
+/* State badge next to tape heading */
+.tm-state-badge {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-rule);
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  color: var(--color-olive-deep);
+  margin-left: 10px;
+}
+
+/* Tape container */
+.tm-tape-container {
+  overflow-x: auto;
+  padding: 16px 0 24px;
+}
+
+.tm-tape {
+  display: flex;
+  gap: 3px;
+  align-items: flex-start;
+  padding: 0 8px;
+  min-width: max-content;
+}
+
+/* Tape cell */
+.tm-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 42px;
+}
+
+.tm-cell-sym {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-rule);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-espresso);
+  background: var(--color-paper);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.tm-cell--head .tm-cell-sym {
+  background: var(--color-olive-deep);
+  color: var(--color-paper);
+  border-color: var(--color-olive-deep);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(63, 81, 33, 0.3);
+}
+
+.tm-head-arrow {
+  font-size: 14px;
+  color: var(--color-olive-deep);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Step info panel */
+.tm-step-info {
+  margin-top: 14px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}

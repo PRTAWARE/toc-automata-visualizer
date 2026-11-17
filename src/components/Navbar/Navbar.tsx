@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Cpu,
   BookOpen,
   Wand2,
   FileJson,
   Settings,
-  Minimize2
+  Minimize2,
+  Sparkles,
+  Database,
+  Disc
 } from 'lucide-react';
 import { useAutomata } from '../../context/AutomataContext';
 import type { AutomatonType } from '../../types/automata';
@@ -13,6 +17,7 @@ import { PresetModal } from '../Panels/PresetModal';
 import { NfaToDfaModal } from '../Panels/NfaToDfaModal';
 import { ExportImportModal } from '../Panels/ExportImportModal';
 import { DfaMinimizerModal } from '../Panels/DfaMinimizerModal';
+import { RegexToAutomataModal } from '../Panels/RegexToAutomataModal';
 
 export const Navbar: React.FC = () => {
   const { automaton, setAutomatonType, setAlphabet, stateNamingStyle, setStateNamingStyle } = useAutomata();
@@ -21,6 +26,7 @@ export const Navbar: React.FC = () => {
   const [isNfaModalOpen, setIsNfaModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isMinimizerModalOpen, setIsMinimizerModalOpen] = useState(false);
+  const [isRegexModalOpen, setIsRegexModalOpen] = useState(false);
   const [isAlphabetEditorOpen, setIsAlphabetEditorOpen] = useState(false);
   const [alphabetInput, setAlphabetInput] = useState(automaton.alphabet.join(', '));
 
@@ -180,6 +186,33 @@ export const Navbar: React.FC = () => {
               <span className="hidden sm:inline">Minimize DFA</span>
             </button>
 
+            {/* Regex to Automata */}
+            <button
+              onClick={() => setIsRegexModalOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-800/80 text-xs font-semibold rounded-xl shadow-sm transition-all cursor-pointer active:scale-95"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden sm:inline">Regex → Automata</span>
+            </button>
+
+            {/* PDA Simulator */}
+            <Link
+              to="/pda"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/80 text-xs font-semibold rounded-xl shadow-sm transition-all cursor-pointer active:scale-95"
+            >
+              <Database className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline">PDA Simulator</span>
+            </Link>
+
+            {/* Turing Machine */}
+            <Link
+              to="/turing-machine"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-950/60 hover:bg-blue-900/60 text-blue-300 border border-blue-800/80 text-xs font-semibold rounded-xl shadow-sm transition-all cursor-pointer active:scale-95"
+            >
+              <Disc className="w-3.5 h-3.5 text-blue-400" />
+              <span className="hidden sm:inline">Turing Machine</span>
+            </Link>
+
             {/* Presets Library */}
             <button
               onClick={() => setIsPresetModalOpen(true)}
@@ -219,6 +252,11 @@ export const Navbar: React.FC = () => {
           setIsMinimizerModalOpen(false);
           setIsNfaModalOpen(true);
         }}
+      />
+
+      <RegexToAutomataModal
+        isOpen={isRegexModalOpen}
+        onClose={() => setIsRegexModalOpen(false)}
       />
 
       <ExportImportModal

@@ -1,0 +1,216 @@
+.home {
+  min-height: calc(100vh - 58px);
+}
+
+/* ── Hero ── */
+.home__hero {
+  background: linear-gradient(135deg, var(--color-olive-deep) 0%, #3a5f1a 60%, #556B2F 100%);
+  padding: 64px 36px 56px;
+  color: var(--color-paper);
+}
+
+.home__hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.home__badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,253,208,0.3);
+  color: var(--color-paper);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.home__title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  color: var(--color-paper);
+}
+
+.home__title span {
+  color: #f5b77a;
+}
+
+.home__subtitle {
+  font-size: clamp(14px, 2.5vw, 18px);
+  opacity: 0.82;
+  margin: 0 0 28px;
+  max-width: 560px;
+}
+
+.home__hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.home__hero-pills span {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,253,208,0.25);
+  color: var(--color-paper);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+}
+
+/* ── Module Grid ── */
+.home__modules {
+  padding: 52px 36px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home__section-title {
+  font-size: 22px;
+  color: var(--color-olive-deep);
+  margin: 0 0 28px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-rule);
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+/* ── Module Card ── */
+.module-card {
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 12px;
+  padding: 28px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.module-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(85,107,47,0.13);
+  border-color: var(--color-olive);
+}
+
+.module-card__icon {
+  font-size: 28px;
+  font-family: var(--font-mono);
+  color: var(--color-terracotta);
+  line-height: 1;
+}
+
+.module-card__tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  background: var(--color-surface);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.module-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-espresso);
+  margin: 0;
+}
+
+.module-card__desc {
+  font-size: 13.5px;
+  color: #5a4a3a;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.module-card__btn {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 9px 18px;
+  background: var(--color-olive-deep);
+  color: var(--color-paper);
+  border-radius: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: background 0.15s;
+}
+
+.module-card__btn:hover {
+  background: var(--color-terracotta);
+}
+
+/* ── Info Strip ── */
+.home__info {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-rule);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+.home__info-item {
+  flex: 1;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+  border-right: 1px solid var(--color-rule);
+}
+
+.home__info-item:last-child {
+  border-right: none;
+}
+
+.home__info-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+
+.home__info-label {
+  font-size: 12px;
+  color: var(--color-espresso);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+@media (max-width: 680px) {
+  .home__hero {
+    padding: 40px 20px 36px;
+  }
+  .home__modules {
+    padding: 32px 20px;
+  }
+  .home__grid {
+    grid-template-columns: 1fr;
+  }
+  .home__info {
+    flex-wrap: wrap;
+  }
+  .home__info-item {
+    min-width: 50%;
+  }
+}

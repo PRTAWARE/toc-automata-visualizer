@@ -1,0 +1,58 @@
+:root {
+  --color-paper: #FFFDD0;
+  --color-surface: #F5F1C5;
+  --color-olive: #556B2F;
+  --color-olive-deep: #3F5121;
+  --color-terracotta: #C85A17;
+  --color-terracotta-deep: #91400F;
+  --color-espresso: #3D2314;
+  --color-rule: rgba(85, 107, 47, 0.32);
+  --color-danger: #8F3024;
+  --color-danger-bg: #F4D9CB;
+
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --max-width: 1440px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-paper);
+  color: var(--color-espresso);
+}
+
+body {
+  min-width: 320px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-display);
+}
+
+button,
+input {
+  font-size: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
